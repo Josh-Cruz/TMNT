@@ -11,10 +11,16 @@ def ninjadisplay():
 
 @app.route('/ninjas/<color>')
 def sort_url(color):
-   if color == 'red':
-       pic = "raphael.jpg"
-       print pic
-       print color
-       return render_template('colors.html', pic = pic )
-
+    color_map = {
+        'red': "raphael.jpg",
+        'blue': "leonardo.jpg",
+        'orange': "michelangelo.jpg",
+        'purple': "donatello.jpg",
+        'default': "notapril.jpg"
+    }
+    if color in color_map:
+       pic = color_map[color] 
+    else:
+        pic = color_map['default']
+    return render_template('colors.html', pic = pic )
 app.run (debug = True)
